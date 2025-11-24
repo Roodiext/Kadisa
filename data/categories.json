@@ -1,0 +1,26 @@
+[
+  {
+    "id": "semua",
+    "name": "Semua",
+    "icon": "🍽️",
+    "description": "Semua menu tersedia"
+  },
+  {
+    "id": "makanan",
+    "name": "Makanan",
+    "icon": "🍚",
+    "description": "Makanan berat dan ringan"
+  },
+  {
+    "id": "minuman",
+    "name": "Minuman",
+    "icon": "🥤",
+    "description": "Minuman segar dan hangat"
+  },
+  {
+    "id": "snack",
+    "name": "Snack",
+    "icon": "🍪",
+    "description": "Camilan dan jajanan"
+  }
+]
