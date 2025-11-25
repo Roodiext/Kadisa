@@ -61,7 +61,7 @@ export default function CheckoutModal({ cart, onClose, onConfirm }: CheckoutModa
             onClick={onClose} 
             className="p-2 hover:bg-gray-100 rounded-xl transition-all"
           >
-            <X size={24} />
+            <X color="#000f" size={24} />
           </button>
         </div>
         
@@ -136,7 +136,7 @@ export default function CheckoutModal({ cart, onClose, onConfirm }: CheckoutModa
                 ? item.price - (item.price * item.discount / 100) 
                 : item.price;
               return (
-                <div key={item.id} className="flex justify-between text-sm">
+                <div key={item.id} className="flex justify-between text-sm text-gray-700">
                   <span className="text-gray-600">
                     {item.name} x{item.quantity}
                   </span>

@@ -59,9 +59,9 @@ export default function CartModal({ cart, onClose, onCheckout, onUpdateQuantity 
           <h2 className="text-2xl font-bold text-gray-800">Keranjang Belanja</h2>
           <button 
             onClick={onClose} 
-            className="p-2 hover:bg-gray-100 rounded-xl transition-all"
+            className="p-2 hover:bg-gray-300 text-color-black rounded-xl transition-all"
           >
-            <X size={24} />
+            <X color="#00000f" size={24} />
           </button>
         </div>
         

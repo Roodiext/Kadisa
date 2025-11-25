@@ -67,16 +67,16 @@ export default function CartItem({ item, onUpdateQuantity }: CartItemProps) {
             onClick={handleDecrease}
             className="w-7 h-7 flex items-center justify-center hover:bg-gray-100 rounded transition-all"
           >
-            <Minus size={14} />
+            <Minus color="#000f" size={14} />
           </button>
-          <span className="font-bold w-6 text-center">
+          <span className="font-bold w-6 text-center text-gray-800">
             {item.quantity}
           </span>
           <button
             onClick={handleIncrease}
-            className="w-7 h-7 flex items-center justify-center bg-orange-500 text-white rounded hover:bg-orange-600 transition-all"
+            className="w-7 h-7 flex items-center justify-center text-white rounded hover:bg-gray-100 transition-all"
           >
-            <Plus size={14} />
+            <Plus color="#000f" size={14} />
           </button>
         </div>
       </div>

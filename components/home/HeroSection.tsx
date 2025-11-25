@@ -1,58 +1,185 @@
 'use client';
-import { useEffect, useRef } from 'react';
+
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+interface Slide {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  ctaText: string;
+}
+
+const slides: Slide[] = [
+  {
+    id: 1,
+    title: "Diskon Hingga 25%",
+    subtitle: "Promo Spesial",
+    description: "Untuk pemesanan hari ini!",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&h=600&fit=crop",
+    ctaText: "Pesan Sekarang"
+  },
+  {
+    id: 2,
+    title: "Menu Baru Setiap Hari",
+    subtitle: "Fresh Daily",
+    description: "Coba menu spesial kami hari ini",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=600&fit=crop",
+    ctaText: "Lihat Menu"
+  },
+  {
+    id: 3,
+    title: "Gratis Ongkir ke Kelas",
+    subtitle: "Super Fast",
+    description: "Pesan sekarang, ambil saat istirahat",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&h=600&fit=crop",
+    ctaText: "Order Now"
+  },
+  {
+    id: 4,
+    title: "Beli 2 Gratis 1",
+    subtitle: "Flash Sale",
+    description: "Khusus minuman pilihan",
+    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&h=600&fit=crop",
+    ctaText: "Ambil Promo"
+  }
+];
 
 export default function HeroSection() {
-  const heroRef = useRef<HTMLDivElement | null>(null);
-  const bgRef = useRef<HTMLDivElement | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   useEffect(() => {
-    let lastScroll = 0;
-    let rafId: number | null = null;
+    if (!isAutoPlay) return;
 
-    const onScroll = () => {
-      lastScroll = window.scrollY;
-      if (rafId == null) {
-        rafId = window.requestAnimationFrame(() => {
-          const val = lastScroll;
-          if (bgRef.current) {
-            // move background shapes slightly for parallax
-            bgRef.current.style.transform = `translateY(${val * 0.12}px)`;
-          }
-          rafId = null;
-        });
-      }
-    };
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [isAutoPlay, currentSlide]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
+
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
 
   return (
-    <section ref={heroRef} className="relative overflow-hidden">
-      <div ref={bgRef} className="bg-gradient-to-br from-orange-400 via-red-400 to-pink-400 text-white px-4 py-10 sm:py-12 rounded-3xl mx-4 my-6 relative overflow-hidden transition-transform duration-500 will-change-transform">
-        <div className="absolute top-0 right-0 w-40 h-40 bg-white opacity-10 rounded-full -mr-20 -mt-20"></div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -ml-16 -mb-16"></div>
+    <div className="relative w-full overflow-hidden">
+      {/* Slides Container */}
+      <div className="relative h-[500px] md:h-[600px]">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-1000 ${
+              index === currentSlide 
+                ? 'opacity-100 scale-100 z-10' 
+                : 'opacity-0 scale-105 z-0'
+            }`}
+          >
+            {/* Background Image dengan Overlay */}
+            <div className="absolute inset-0">
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
+            </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-3">
-            🎉 Promo Spesial
+            {/* Content - Positioned at Bottom Left */}
+            <div className="absolute bottom-28 left-0 right-0 z-10 px-6 md:px-12">
+              <div className="max-w-7xl mx-auto">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 px-5 py-2 rounded-full text-sm font-bold mb-4 text-white shadow-lg animate-pulse">
+                  <span className="w-2 h-2 bg-white rounded-full animate-ping"></span>
+                  <span>{slide.subtitle}</span>
+                </div>
+
+                {/* Title with animation */}
+                <h2 className="text-4xl md:text-6xl font-bold mb-3 max-w-2xl text-white drop-shadow-2xl leading-tight">
+                  {slide.title}
+                </h2>
+
+                {/* Description */}
+                <p className="text-white/90 text-lg md:text-xl mb-6 max-w-md">
+                  {slide.description}
+                </p>
+
+                {/* CTA Button */}
+                <button className="group relative bg-white text-orange-600 font-bold px-8 py-4 rounded-xl overflow-hidden hover:shadow-2xl transition-all">
+                  <span className="relative z-10 flex items-center gap-2">
+                    {slide.ctaText}
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                  <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    {slide.ctaText} →
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3">Diskon Hingga 25%</h2>
-          <p className="text-white/90 mb-6 text-sm sm:text-base">Untuk pemesanan hari ini!</p>
-          <div className="flex items-center justify-center gap-4">
-            <button className="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:shadow-lg transition-all">
-              Pesan Sekarang →
-            </button>
-            <button className="bg-white/20 text-white px-4 py-3 rounded-xl hover:bg-white/30 transition-all hidden sm:inline">Lihat Promo</button>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* sentinel for header to observe */}
-      <div id="hero-sentinel" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1 }} />
-    </section>
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-md text-white p-3 rounded-full hover:bg-white/40 transition-all hover:scale-110"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      <button
+        onClick={goToNext}
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-md text-white p-3 rounded-full hover:bg-white/40 transition-all hover:scale-110"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`transition-all ${
+              index === currentSlide
+                ? 'w-10 bg-white'
+                : 'w-3 bg-white/50 hover:bg-white/70'
+            } h-3 rounded-full`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Curved Bottom Transition */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
+        <svg viewBox="0 0 1440 100" className="w-full h-16 md:h-24" preserveAspectRatio="none">
+          <path 
+            d="M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z" 
+            fill="rgb(249, 250, 251)"
+          />
+        </svg>
+      </div>
+    </div>
   );
 }

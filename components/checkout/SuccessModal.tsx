@@ -1,6 +1,7 @@
-'use client';
+ 'use client';
 
 import { Check } from 'lucide-react';
+import Link from 'next/link';
 
 interface SuccessModalProps {
   orderCode: string;
@@ -42,13 +43,19 @@ export default function SuccessModal({ orderCode, onClose }: SuccessModalProps) 
           </ol>
         </div>
         
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all"
-        >
-          Selesai
-        </button>
+        <div className="space-y-3">
+          <Link href="/orders" onClick={onClose} className="w-full inline-block text-center bg-white border border-orange-500 text-orange-600 font-semibold py-3 rounded-xl hover:bg-orange-50 transition-all">
+            Lihat Riwayat
+          </Link>
+
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all"
+          >
+            Selesai
+          </button>
+        </div>
       </div>
     </div>
   );
