@@ -11,6 +11,7 @@ import PopularCarousel from '@/components/menu/PopularCarousel';
 import CartModal from '@/components/cart/CartModal';
 import CheckoutModal from '@/components/checkout/CheckoutModal';
 import SuccessModal from '@/components/checkout/SuccessModal';
+import Footer from '@/components/layout/Footer';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import menuData from '@/data/menu.json';
 
@@ -236,6 +237,8 @@ export default function Home() {
           onClose={handleCloseSuccess} 
         />
       )}
+
+      <Footer />
     </div>
   );
 }

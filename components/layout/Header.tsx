@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import { ShoppingCart, Search, Clock } from 'lucide-react';
@@ -17,7 +17,7 @@ export default function Header({ cartCount, onCartClick, searchQuery = '', onSea
   useEffect(() => {
     const handleScroll = () => {
       // Sticky setelah scroll 250px (setelah hero image)
-      setIsSticky(window.scrollY > 250);
+      setIsSticky(window.scrollY > 280);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -36,7 +36,7 @@ export default function Header({ cartCount, onCartClick, searchQuery = '', onSea
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center gap-3">
-             <img src="/public/img/xing.png" alt="" />
+              <img src="/img/xing.png" alt="KADISA Logo" className="w-10 h-10 object-contain" />
               <div className="hidden sm:block">
                 <h1 className="text-lg font-bold text-gray-800">KADISA</h1>
                 <p className="text-xs text-gray-500">Kantin Digital Sekolah</p>
@@ -80,7 +80,7 @@ export default function Header({ cartCount, onCartClick, searchQuery = '', onSea
       {/* Floating Search Bar - Overlay di Hero Image */}
       <div
         className={`fixed left-1/2 -translate-x-1/2 z-40 w-full max-w-2xl px-4 transition-all duration-300 ${
-          isSticky ? 'opacity-0 pointer-events-none top-32' : 'opacity-100 top-64'
+          isSticky ? 'opacity-0 pointer-events-none -top-32' : 'opacity-100 top-34'
         }`}
       >
         <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl p-2 flex items-center gap-2">

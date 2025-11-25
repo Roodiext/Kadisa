@@ -102,7 +102,7 @@
     "price": 5000,
     "image": "https://images.unsplash.com/photo-1580407196238-dac33f57c410?w=400&h=300&fit=crop",
     "rating": 4.6,
-    "reviews": 201,
+    "reviews": 201, 
     "description": "Soto ayam kuah kuning dengan nasi",
     "isPopular": false,
     "discount": 0
