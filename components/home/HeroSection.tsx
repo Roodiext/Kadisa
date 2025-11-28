@@ -31,9 +31,9 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    title: "Gratis Ongkir ke Kelas",
+    title: "Males antri? pesan dulu di Kadisa!!",
     subtitle: "Super Fast",
-    description: "Pesan sekarang, ambil saat istirahat",
+    description: "Pesan dulu, ambil saat istirahat",
     image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&h=600&fit=crop",
     ctaText: "Order Now"
   },

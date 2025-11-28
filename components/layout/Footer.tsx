@@ -13,7 +13,7 @@ function Footer() {
               <img src="/img/xing.png" alt="KADISA Logo" className="w-10 h-10 object-contain" />
               <div>
                 <h3 className='text-lg font-bold'>KADISA</h3>
-                <p className='text-xs text-orange-100'>Kantin Digital Sekolah</p>
+                <p className='text-xs text-orange-100'>Kantin Digital Viska</p>
               </div>
             </div>
             <p className='text-sm text-orange-100 leading-relaxed'>Platform pemesanan makanan dan minuman untuk siswa sekolah dengan mudah dan cepat.</p>

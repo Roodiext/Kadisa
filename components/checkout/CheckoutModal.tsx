@@ -44,7 +44,6 @@ export default function CheckoutModal({ cart, onClose, onConfirm }: CheckoutModa
   const pickupTimes = [
     { id: 'istirahat1', name: 'Istirahat 1', time: '09:30 - 10:00' },
     { id: 'istirahat2', name: 'Istirahat 2', time: '12:00 - 12:30' },
-    { id: 'pulang', name: 'Pulang Sekolah', time: '15:00 - 15:30' }
   ];
 
   const handleConfirm = () => {

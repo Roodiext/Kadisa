@@ -39,7 +39,7 @@ export default function Header({ cartCount, onCartClick, searchQuery = '', onSea
               <img src="/img/xing.png" alt="KADISA Logo" className="w-10 h-10 object-contain" />
               <div className="hidden sm:block">
                 <h1 className="text-lg font-bold text-gray-800">KADISA</h1>
-                <p className="text-xs text-gray-500">Kantin Digital Sekolah</p>
+                <p className="text-xs text-gray-500">Kantin Digital Viska</p>
               </div>
             </div>
 

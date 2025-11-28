@@ -7,7 +7,7 @@ export default function QuickActions() {
     {
       icon: Clock,
       title: 'Jam Buka',
-      value: '07:00 - 15:00',
+      value: '07:00 - 14:00',
       subtitle: 'Senin - Jumat',
       color: 'text-blue-600',
       bg: 'bg-blue-50',
